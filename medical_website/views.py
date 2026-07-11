@@ -35,6 +35,7 @@ class MedicalWebsiteView(TemplateView):
     template_name = "medical_website/main.html"
 
     def get_context_data(self, **kwargs):
+        """Получение контекстных данных из родительского класса"""
         context = super().get_context_data(**kwargs)
         specializations = Specialization.objects.all()
         context["specializations"] = specializations
@@ -116,6 +117,7 @@ class ServiceBySpecializationView(ListView):
         return ServicesService.get_service_by_id(specialization_id)
 
     def get_context_data(self, **kwargs):
+        """Получение контекстных данных из родительского класса"""
         context = super().get_context_data(**kwargs)
         specialization_id = self.kwargs.get("specialization_id")
         context["service_by_specialization"] = ServicesService.get_service_by_id(
@@ -132,6 +134,7 @@ class AppointmentCreateView(CreateView, LoginRequiredMixin):
     form_class = AppointmentForm
 
     def form_valid(self, form):
+        """Присвоение авторства записи текущему пользователю"""
         appointment = form.save()
         user = self.request.user
         appointment.owner = user
@@ -139,6 +142,7 @@ class AppointmentCreateView(CreateView, LoginRequiredMixin):
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
+        """Получение контекстных данных из родительского класса"""
         context = super().get_context_data(**kwargs)
         all_time = ALL_TIME
         context["all_time"] = all_time
@@ -152,6 +156,7 @@ class AppointmentCreateView(CreateView, LoginRequiredMixin):
         return context
 
     def post(self, request, *args, **kwargs):
+        """Получение данных пользователя для создания экземпляра класса"""
         if request.method == "POST":
             form = AppointmentForm(request.POST)
             if form.is_valid():
@@ -198,6 +203,7 @@ class SuccessAppointmentView(DetailView):
     template_name = "medical_website/success_appointment.html"
 
     def get_context_data(self, **kwargs):
+        """Получение контекстных данных из родительского класса"""
         context = super().get_context_data(**kwargs)
         appointment = self.object
         context["appointment"] = appointment

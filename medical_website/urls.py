@@ -13,12 +13,7 @@ from medical_website.views import (
     ServiceUpdateView,
     ServiceDeleteView,
     AboutUsView,
-    AppointmentDeleteView,
-    AppointmentListView,
     AppointmentCreateView,
-    AppointmentUpdateView,
-    AppointmentDetailView,
-    ContactsView,
     ServiceBySpecializationView,
     SuccessAppointmentView,
 )

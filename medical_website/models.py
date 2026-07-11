@@ -98,6 +98,7 @@ class Appointment(models.Model):
 
 
 class Employee(models.Model):
+    """Класс работники"""
     person = models.OneToOneField(
         User,
         on_delete=models.CASCADE,

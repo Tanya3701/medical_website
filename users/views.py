@@ -12,11 +12,13 @@ from users.models import User
 
 
 class UserCreateView(CreateView):
+    """Класс создания экземпляра класса Пользователь"""
     model = User
     form_class = UserRegisterForm
     success_url = reverse_lazy("users:login")
 
     def form_valid(self, form):
+        """Получение токена текущем пользователем """
         user = form.save()
         user.is_active = False
         token = secrets.token_hex(16)
@@ -34,6 +36,7 @@ class UserCreateView(CreateView):
 
 
 def email_verification(request, token):
+    """Верификация пользователя по токену"""
     user = get_object_or_404(User, token=token)
     user.is_active = True
     user.save()
@@ -41,12 +44,14 @@ def email_verification(request, token):
 
 
 class PersonalAccountView(TemplateView):
+    """Класс представления страницы личного кабинета пользователя"""
     model = User
     form_class = UserRegisterForm
     template_name = "users/personal_account.html"
     context_object_name = "user"
 
     def get_context_data(self, **kwargs):
+        """Получение контекстных данных из родительского класса"""
         context = super().get_context_data(**kwargs)
         user = self.request.user
         context["user"] = user
