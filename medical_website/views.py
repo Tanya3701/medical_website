@@ -2,19 +2,13 @@ from datetime import datetime, timedelta
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-
-from django.views.generic import (
-    CreateView,
-    DeleteView,
-    DetailView,
-    ListView,
-    TemplateView,
-    UpdateView,
-)
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  TemplateView, UpdateView)
 from rest_framework.reverse import reverse_lazy
 
-from medical_website.forms import AppointmentForm, SpecializationForm, ServiceForm
-from medical_website.models import Specialization, Service, Appointment
+from medical_website.forms import (AppointmentForm, ServiceForm,
+                                   SpecializationForm)
+from medical_website.models import Appointment, Service, Specialization
 from medical_website.services import ServicesService
 
 ALL_TIME = [
@@ -32,6 +26,7 @@ ALL_TIME = [
 
 class MedicalWebsiteView(TemplateView):
     """Класс представления главной страницы"""
+
     template_name = "medical_website/main.html"
 
     def get_context_data(self, **kwargs):
@@ -43,18 +38,21 @@ class MedicalWebsiteView(TemplateView):
 
 class SpecializationListView(ListView):
     """Класс представления списка категорий"""
+
     model = Specialization
     context_object_name = "specializations"
 
 
 class SpecializationDetailView(DetailView):
     """Класс представления одной категорий"""
+
     model = Specialization
     context_object_name = "specialization"
 
 
 class SpecializationCreateView(CreateView):
     """Класс представления создания категорий"""
+
     model = Specialization
     context_object_name = "specialization"
     success_url = reverse_lazy("medical_website:specialization_list")
@@ -63,6 +61,7 @@ class SpecializationCreateView(CreateView):
 
 class SpecializationUpdateView(UpdateView):
     """Класс представления редактирования категорий"""
+
     model = Specialization
     context_object_name = "specialization"
     success_url = reverse_lazy("medical_website:specialization_list")
@@ -71,6 +70,7 @@ class SpecializationUpdateView(UpdateView):
 
 class SpecializationDeleteView(DeleteView):
     """Класс представления удаления категорий"""
+
     model = Specialization
     context_object_name = "specialization"
     success_url = reverse_lazy("medical_website:specialization_list")
@@ -78,12 +78,14 @@ class SpecializationDeleteView(DeleteView):
 
 class ServiceDetailView(DetailView):
     """Класс представления одной услуги"""
+
     model = Service
     context_object_name = "service"
 
 
 class ServiceCreateView(CreateView):
     """Класс представления создания услуги"""
+
     model = Service
     context_object_name = "service"
     success_url = reverse_lazy("medical_website:specialization_list")
@@ -92,6 +94,7 @@ class ServiceCreateView(CreateView):
 
 class ServiceUpdateView(UpdateView):
     """Класс представления редактирования услуги"""
+
     model = Service
     context_object_name = "service"
     success_url = reverse_lazy("medical_website:specialization_list")
@@ -100,6 +103,7 @@ class ServiceUpdateView(UpdateView):
 
 class ServiceDeleteView(DeleteView):
     """Класс представления удаления услуги"""
+
     model = Service
     context_object_name = "service"
     success_url = reverse_lazy("medical_website:specialization_list")
@@ -107,11 +111,19 @@ class ServiceDeleteView(DeleteView):
 
 class AboutUsView(TemplateView):
     """Класс представления страницы о нас"""
+
     template_name = "medical_website/about_us.html"
+
+
+class ContactsView(TemplateView):
+    """Класс представления страницы контакты"""
+
+    template_name = "medical_website/contacts.html"
 
 
 class ServiceBySpecializationView(ListView):
     """Класс представления услуг по категориям"""
+
     def get_queryset(self):
         specialization_id = self.kwargs.get("specialization_id")
         return ServicesService.get_service_by_id(specialization_id)
@@ -128,6 +140,7 @@ class ServiceBySpecializationView(ListView):
 
 class AppointmentCreateView(CreateView, LoginRequiredMixin):
     """Класс представления создания записи"""
+
     model = Appointment
     context_object_name = "appointment"
     success_url = reverse_lazy("medical_website:success_appointment")
@@ -198,6 +211,7 @@ class AppointmentCreateView(CreateView, LoginRequiredMixin):
 
 class SuccessAppointmentView(DetailView):
     """Класс представления страницы удачной записи"""
+
     model = Appointment
     context_object_name = "appointment"
     template_name = "medical_website/success_appointment.html"

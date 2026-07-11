@@ -2,11 +2,12 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 
-from medical_website.models import Specialization, Service
+from medical_website.models import Service, Specialization
 
 
 class SpecializationTest(TestCase):
     """Тестирование представлений класса категории"""
+
     def setUp(self):
         self.specialization = Specialization.objects.create(
             name="Test", description="Test"
@@ -54,6 +55,7 @@ class SpecializationTest(TestCase):
 
 class ServiceTest(TestCase):
     """Тест представления класса услуг"""
+
     def setUp(self):
         self.specialization = Specialization.objects.create(
             name="Test", description="Test"

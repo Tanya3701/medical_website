@@ -2,7 +2,7 @@ import secrets
 
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, TemplateView
 
 from config import settings
@@ -13,12 +13,13 @@ from users.models import User
 
 class UserCreateView(CreateView):
     """Класс создания экземпляра класса Пользователь"""
+
     model = User
     form_class = UserRegisterForm
     success_url = reverse_lazy("users:login")
 
     def form_valid(self, form):
-        """Получение токена текущем пользователем """
+        """Получение токена текущем пользователем"""
         user = form.save()
         user.is_active = False
         token = secrets.token_hex(16)
@@ -45,6 +46,7 @@ def email_verification(request, token):
 
 class PersonalAccountView(TemplateView):
     """Класс представления страницы личного кабинета пользователя"""
+
     model = User
     form_class = UserRegisterForm
     template_name = "users/personal_account.html"

@@ -14,6 +14,7 @@ PASSWORD = os.getenv("USER_PASSWORD")
 
 class Command(BaseCommand):
     """Создание супер-юзера"""
+
     def handle(self, *args, **options):
         user = User.objects.create(email=EMAIL)
         user.set_password(PASSWORD)

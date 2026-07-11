@@ -1,10 +1,11 @@
 from django.forms import ModelForm
 
-from medical_website.models import Specialization, Service, Appointment
+from medical_website.models import Appointment, Service, Specialization
 
 
 class SpecializationForm(ModelForm):
     """Стандартная форма для класса категории"""
+
     class Meta:
         model = Specialization
         fields = "__all__"
@@ -21,6 +22,7 @@ class SpecializationForm(ModelForm):
 
 class ServiceForm(ModelForm):
     """Стандартная форма для класса услуг"""
+
     class Meta:
         model = Service
         fields = "__all__"
@@ -40,6 +42,7 @@ class ServiceForm(ModelForm):
 
 class AppointmentForm(ModelForm):
     """Стандартная форма для класса Запись"""
+
     class Meta:
         model = Appointment
         fields = ["name", "last_name", "phone", "service"]

@@ -1,22 +1,17 @@
 from django.urls import path
 
 from medical_website.apps import MedicalWebsiteConfig
-from medical_website.views import (
-    MedicalWebsiteView,
-    SpecializationDetailView,
-    SpecializationListView,
-    SpecializationCreateView,
-    SpecializationUpdateView,
-    SpecializationDeleteView,
-    ServiceCreateView,
-    ServiceDetailView,
-    ServiceUpdateView,
-    ServiceDeleteView,
-    AboutUsView,
-    AppointmentCreateView,
-    ServiceBySpecializationView,
-    SuccessAppointmentView,
-)
+from medical_website.views import (AboutUsView, AppointmentCreateView,
+                                   ContactsView, MedicalWebsiteView,
+                                   ServiceBySpecializationView,
+                                   ServiceCreateView, ServiceDeleteView,
+                                   ServiceDetailView, ServiceUpdateView,
+                                   SpecializationCreateView,
+                                   SpecializationDeleteView,
+                                   SpecializationDetailView,
+                                   SpecializationListView,
+                                   SpecializationUpdateView,
+                                   SuccessAppointmentView)
 
 app_name = MedicalWebsiteConfig.name
 
@@ -64,26 +59,10 @@ urlpatterns = [
         "service/<int:pk>/delete/", ServiceDeleteView.as_view(), name="service_delete"
     ),
     path("about_us/", AboutUsView.as_view(), name="about_us"),
-    path("appointment/list/", AppointmentListView.as_view(), name="appointment_list"),
     path(
         "appointment/create/",
         AppointmentCreateView.as_view(),
         name="appointment_create",
-    ),
-    path(
-        "appointment/<int:pk>/update/",
-        AppointmentUpdateView.as_view(),
-        name="appointment_update",
-    ),
-    path(
-        "appointment/<int:pk>/delete/",
-        AppointmentDeleteView.as_view(),
-        name="appointment_delete",
-    ),
-    path(
-        "appointment/detail/<int:pk>/",
-        AppointmentDetailView.as_view(),
-        name="appointment_detail",
     ),
     path("contacts/", ContactsView.as_view(), name="contacts"),
     path(
