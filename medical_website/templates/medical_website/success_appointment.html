@@ -1,0 +1,33 @@
+{% extends 'medical_website/base.html' %}
+{% block title %}Удачная запись{% endblock %}
+{% block content %}
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-6">
+        <h1 class="text-center"> Запись успешно создана!
+        </h1>
+        <h2 class="text-center">
+            Можете распечатать талон или предъявить его электронную версию
+        </h2>
+        <div class="card text-center">
+  <div class="card-header">
+      Запись на {{ appointment.name }}{{appointment.last_name }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Запись на процедуру - {{ appointment.service.name }}</h5>
+    <p class="card-text">Дата записи: {{ appointment.order_day}} на {{appointment.order_time}} часов</p>
+
+  </div>
+  <div class="card-footer text-muted">
+    Дата создания: {{appointment.created_at}}
+  </div>
+</div>
+    </div>
+
+</div>
+{% endblock %}

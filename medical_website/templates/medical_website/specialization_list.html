@@ -1,0 +1,35 @@
+{% extends 'medical_website/base.html' %}
+{% block title %}Список специализаций{% endblock %}
+{% block content %}
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<p class="fs-4"><img class="me-3" src="/media/medical_website/images/list.svg" alt="" width="48" height="38">Список категорий</p>
+<div class="row">
+    <div class="col-4">
+        <hr>
+    </div>
+</div>
+
+<a href="{% url 'medical_website:specialization_create' %}" class="link-success">Добавить категорию</a>
+
+
+
+{% for specialization in specializations %}
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">{{ specialization.name}}</li>
+
+
+
+  <a href="{% url 'medical_website:specialization_detail' specialization.pk %}" class="link-primary">Подробнее</a>
+  <a href="{% url 'medical_website:service_list' specialization.pk %}" class="link-primary">Услуги данной категории</a>
+
+</ul>
+<div class="bd-example-snippet bd-codesnippet"><div class="bd-example m-0 border-0">
+        <hr>
+        </div></div>
+
+{% endfor %}
+{% endblock %}

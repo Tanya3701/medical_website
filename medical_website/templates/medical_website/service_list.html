@@ -1,0 +1,31 @@
+{% extends 'medical_website/base.html' %}
+{% block title %}Список услуг{% endblock %}
+{% block content %}
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<p class="fs-4"><img class="me-3" src="/media/medical_website/images/list.svg" alt="" width="48" height="38">Список услуг</p>
+<div class="row">
+    <div class="col-4">
+        <hr>
+    </div>
+</div>
+
+<a href="{% url 'medical_website:service_create' %}" class="link-success">Добавить услугу</a>
+
+{% for service in service_by_specialization %}
+
+
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">{{ service.name}}</li>
+  <a href="{% url 'medical_website:service_detail' service.pk %}" class="link-primary">Подробнее</a>
+
+</ul>
+<div class="bd-example-snippet bd-codesnippet"><div class="bd-example m-0 border-0">
+        <hr>
+        </div></div>
+
+{% endfor %}
+{% endblock %}
