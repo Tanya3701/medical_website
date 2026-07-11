@@ -1,0 +1,32 @@
+{% extends 'medical_website/base.html' %}
+{% load my_tags %}
+{% block title %}Услуга{% endblock %}
+{% block content %}
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+
+<p class="fs-4"><img class="me-3" src="/media/medical_website/images/eye.svg" alt="" width="48" height="38">Подробнее о специализации - {{ service.name }}</p>
+<div class="row">
+    <div class="col-4">
+        <hr>
+    </div>
+</div>
+<img src="{{ service.preview | media_filter }}" class="card-img-top" alt="..." style="width: 200px;">
+<ul class="list-group list-group-flush">
+
+  <li class="list-group-item">Наименование: {{ service.name }}</li>
+  <li class="list-group-item">Описание: {{ service.description }}</li>
+  <li class="list-group-item">Цена: {{ service.price }}</li>
+  <li class="list-group-item">Категория: {{ service.specialization.name }}</li>
+    <a href="{% url 'medical_website:service_update' service.pk %}" class="link-success">Редактировать</a>
+    <a href="{% url 'medical_website:service_delete' service.pk %}" class="link-danger">Удалить</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'medical_website:appointment_create'%}" class="link-primary">Записаться на прием</a>
+    {% endif %}
+    <a href="{% url 'medical_website:service_list' service.specialization.pk %}" class="link-primary">Назад</a>
+</ul>
+<div class="bd-example-snippet bd-code-snippet"><div class="bd-example m-0 border-0">
+        <hr>
+        </div></div>
+{% endblock %}

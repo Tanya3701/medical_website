@@ -1,0 +1,26 @@
+{% extends 'medical_website/base.html' %}
+{% load my_tags %}
+{% block title %}Специализация{% endblock %}
+{% block content %}
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+
+<p class="fs-4"><img class="me-3" src="/media/medical_website/images/eye.svg" alt="" width="48" height="38">Подробнее о специализации - {{ specialization.name }}</p>
+<div class="row">
+    <div class="col-4">
+        <hr>
+    </div>
+</div>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">Категория: {{ specialization.name }}</li>
+  <li class="list-group-item">Описание: {{ specialization.description }}</li>
+    <a href="{% url 'medical_website:specialization_update' specialization.pk %}" class="link-success">Редактировать</a>
+    <a href="{% url 'medical_website:specialization_delete' specialization.pk %}" class="link-danger">Удалить</a>
+
+
+
+
+{% endblock %}

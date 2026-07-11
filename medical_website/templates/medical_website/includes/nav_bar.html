@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top " style="background-color: #483D8B;">
+  <div class="container-fluid">
+
+      <img src="/media/medical_website/images/home3.png" class="object-fit-contain border rounded h-200" style="width: 500px;" alt="...">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'medical_website:main' %}">Главная</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'medical_website:specialization_list' %}">Услуги</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link " href="{% url 'medical_website:about_us' %}">О нас</a>
+              </li>
+          <li>
+          <a class="nav-link " href="{% url 'medical_website:contacts' %}">Контакты</a>
+          </li>
+          <li>
+          <a class="nav-link " href="{% url 'users:personal_account' %}">Войти в личный кабинет</a>
+          </li>
+             </ul>
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-light" href="{% url 'users:logout' %}" role="button">Выход</a>
+          {% else %}
+        <a class="btn btn-outline-light" href="{% url 'users:login' %}" role="button">Войти</a>
+        <a class="btn btn-outline-light" href="{% url 'users:register' %}" role="button">Регистрация</a>
+          {% endif %}
+
+
+      <form class="d-flex" role="search">
+
+      </form>
+    </div>
+  </div>
+
+</nav>

@@ -1,0 +1,33 @@
+{% extends 'medical_website/base.html' %}
+{% load my_tags %}
+{% block title %}О нас{% endblock %}
+{% block content %}
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row mb-5"></div>
+<div class="row">
+    <div class="col-4">
+<img src="{{ user.avatar | media_filter }}" class="card-img-top "  style="width: 250px;" alt="Разместите фото">
+    </div>
+    <div class="col-4">
+    <h3 class="text-center">
+        История обращений:
+    </h3>
+        {% for appointment in appointments %}
+        <hr>
+        <p class="text-fs-5">Запись от: {{appointment.created_at}}</p>
+        <p class="text-fs-5">Услуга: {{appointment.service.name}}</p>
+        <p class="text-fs-5">Дата: {{appointment.order_day}}</p>
+        <p class="text-fs-5">Время: {{appointment.order_time}}</p>
+        {% endfor %}
+        </div>
+    <div class="col-4">
+         <h3 class="text-center">
+        Результаты диагностики:
+    </h3>
+    </div>
+</div>
+
+{% endblock %}
